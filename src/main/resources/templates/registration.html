@@ -6,26 +6,33 @@
     <title>Registration</title>
 </head>
 <body>
+
+    <nav class="navbar">
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+        </ul>
+    </nav>
+
     <h2>Create new user</h2>
     <form th:action="@{/registration}" th:object="${user}" method="post">
     <label>Email:</label>
-    <input type="text" th:field="*{email}">
+    <input type="text" th:field="*{email}" required>
     <br>
     <br>
     <label>First name:</label>
-    <input type="text" th:field="*{firstname}">
+    <input type="text" th:field="*{firstname}" required>
     <br>
     <br>
     <label>Last name:</label>
-    <input type="text" th:field="*{lastname}">
+    <input type="text" th:field="*{lastname}" required>
     <br>
     <br>
     <label>Username:</label>
-    <input type="text" th:field="*{username}">
+    <input type="text" th:field="*{username}" required>
     <br>
     <br>
     <label>Password:</label>
-    <input type="text" th:field="*{password}">
+    <input type="text" th:field="*{password}" required>
     <br>
     <br>
     <button type="submit">Register</button>
