@@ -1,4 +1,4 @@
-package com.login.Login.Product;
+package com.login.Login.Model.Product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

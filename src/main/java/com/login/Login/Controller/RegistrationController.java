@@ -5,8 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.login.Login.Model.User.User;
 import com.login.Login.Repository.UserRepository;
-import com.login.Login.User.User;
 
 @Controller
 public class RegistrationController {
