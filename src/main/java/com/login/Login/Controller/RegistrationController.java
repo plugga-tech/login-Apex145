@@ -25,7 +25,14 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String postRegistrationForm(Model model, User user) {
-        userRepository.save(user);
+        if (user.getEmail().isEmpty() || user.getUsername().isEmpty() || user.getPassword().isEmpty()
+                || user.getFirstname().isEmpty() || user.getLastname().isEmpty()) {
+            model.addAttribute("error", "You need to fill in all the fields");
+            model.addAttribute("user", user);
+            return "registration";
+        } else {
+            userRepository.save(user);
+        }
         return "redirect:/";
     }
 
