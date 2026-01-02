@@ -23,7 +23,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth.requestMatchers("/", "/registration", "/style.css","/images/*").permitAll()
+        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth.requestMatchers("/", "/registration", "/style.css","/images/*", "/orders").permitAll()
         .anyRequest().authenticated())
         .userDetailsService(jpaUserDetailsService)
         .formLogin(Customizer.withDefaults());
