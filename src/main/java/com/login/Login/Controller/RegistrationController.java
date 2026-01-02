@@ -1,5 +1,6 @@
 package com.login.Login.Controller;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,11 @@ public class RegistrationController {
 
     private final UserRepository userRepository;
 
-    public RegistrationController(UserRepository userRepository) {
+    private final PasswordEncoder bCryptEncoder;
+
+    public RegistrationController(UserRepository userRepository, PasswordEncoder bCryptEncoder) {
         this.userRepository = userRepository;
+        this.bCryptEncoder = bCryptEncoder;
     }
 
     @GetMapping("/registration")
@@ -31,6 +35,8 @@ public class RegistrationController {
             model.addAttribute("user", user);
             return "registration";
         } else {
+            String encryptedPassword = bCryptEncoder.encode(user.getPassword());
+            user.setPassword(encryptedPassword);
             userRepository.save(user);
         }
         return "redirect:/";
