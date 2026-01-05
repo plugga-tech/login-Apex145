@@ -8,17 +8,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.login.Login.Model.User.User;
 import com.login.Login.Repository.UserRepository;
+import com.login.Login.Service.ApplicationService;
 
 @Controller
 public class RegistrationController {
 
-    private final UserRepository userRepository;
+    private final ApplicationService applicationService;
 
-    private final PasswordEncoder bCryptEncoder;
-
-    public RegistrationController(UserRepository userRepository, PasswordEncoder bCryptEncoder) {
-        this.userRepository = userRepository;
-        this.bCryptEncoder = bCryptEncoder;
+    public RegistrationController(UserRepository userRepository, PasswordEncoder bCryptEncoder,
+        ApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     @GetMapping("/registration")
@@ -29,17 +28,12 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String postRegistrationForm(Model model, User user) {
-        if (user.getEmail().isEmpty() || user.getUsername().isEmpty() || user.getPassword().isEmpty()
-                || user.getFirstname().isEmpty() || user.getLastname().isEmpty()) {
+        if(applicationService.registerUser(user) == true) {
+            return "redirect:/";
+        } else {
             model.addAttribute("error", "You need to fill in all the fields");
             model.addAttribute("user", user);
             return "registration";
-        } else {
-            String encryptedPassword = bCryptEncoder.encode(user.getPassword());
-            user.setPassword(encryptedPassword);
-            userRepository.save(user);
         }
-        return "redirect:/";
     }
-
 }
