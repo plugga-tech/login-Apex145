@@ -6,20 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.login.Login.Model.Product.Products;
-import com.login.Login.Repository.ProductsRepository;
+import com.login.Login.Service.ApplicationService;
 
 @Controller
 public class DescriptionController {
 
-    private final ProductsRepository productsRepository;
 
-    public DescriptionController(ProductsRepository productsRepository) {
-        this.productsRepository = productsRepository;
+    private final ApplicationService applicationService;
+
+    public DescriptionController(ApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
+    
 
     @GetMapping("/itemdescription/{id}")
     public String getItemDescription(@PathVariable Integer id, Model model) {
-        Products item = productsRepository.findById(id).orElseThrow();
+        Products item = applicationService.itemDescription(id);
         model.addAttribute("item", item);
         return "description";
     }
