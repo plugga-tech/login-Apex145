@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="https://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,23 @@
     <nav class="navbar">
         <ul>
             <li><a th:href="@{/}">Homepage</a></li>
+            <div sec:authorize="isAnonymous()">
+                <li><a th:href="@{/login}">Login</a></li>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </div>
         </ul>
+
+
+        <div th:object="${item}">
+            <h2 th:text="*{name}">product name</h2>
+            <img th:src="@{'/images/' + *{image}}" alt="Product image" style="width: 200px;">
+            <p th:text="*{description}">description</p>
+            <p th:text="*{price} + Kr">price</p>
+            <button sec:authorize="isAuthenticated()">Add to cart</button>
+
+        </div>
 
 </body>
 
