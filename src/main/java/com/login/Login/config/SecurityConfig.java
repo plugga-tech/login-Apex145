@@ -27,7 +27,11 @@ public class SecurityConfig {
         "/orders", "/itemdescription/{id}").permitAll()
         .anyRequest().authenticated())
         .userDetailsService(jpaUserDetailsService)
-        .formLogin(Customizer.withDefaults());
+        .formLogin(Customizer.withDefaults())
+        .logout(logout -> logout
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/")
+        .permitAll());
         return http.build();
     }
 
