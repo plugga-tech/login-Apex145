@@ -4,7 +4,8 @@
 
 Elysian is a very simplified webshop, that uses spring security for user authentication and also stores the 
 user data by using encryption. It allows the user to create a new user and to login in with the newly created user.
-This application was created a part of a school project
+<br>
+This application was created as part of a school project
 
 
 ## Built with
