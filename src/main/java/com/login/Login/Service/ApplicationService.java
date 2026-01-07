@@ -1,5 +1,7 @@
 package com.login.Login.Service;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +26,15 @@ public class ApplicationService {
         this.bCryptEncoder = bCryptEncoder;
     }
 
+    // Looks for the specific item id.
+    // If it doesn't find int it will throw an NoSuchElementException.
     public Products itemDescription(Integer id) {
         Products item = productsRepository.findById(id).orElseThrow();
         return item;
     }
 
+    // Checks if the registration form is fully filled out.
+    // If not int won't let the guest register a new user until all fields all filled.
     public boolean registerUser(User user) {
         if (user.getEmail().isEmpty() || user.getUsername().isEmpty() || user.getPassword().isEmpty()
             || user.getFirstname().isEmpty() || user.getLastname().isEmpty()) {

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Description</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
 <body>
@@ -18,9 +19,10 @@
                 <li><a th:href="@{/logout}">Logout</a></li>
             </div>
         </ul>
+        </nav>
 
 
-        <div th:object="${item}">
+        <div th:object="${item}" class="product-card">
             <h2 th:text="*{name}">product name</h2>
             <img th:src="@{'/images/' + *{image}}" alt="Product image" style="width: 200px;">
             <p th:text="*{description}">description</p>
