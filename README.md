@@ -35,7 +35,7 @@ This application uses Spring Security.
 https://github.com/plugga-tech/login-Apex145.git
 
 **Database Configuration:**
-You need to create a database called logindb, if you don't do this the apllication will not start.
+You need to create a database called logindb, if you don't do this the application will not start.
 
 **Run the application:**
 The applications uses tomcats default address which is: http://localhost:8080
