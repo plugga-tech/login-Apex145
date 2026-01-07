@@ -23,13 +23,16 @@
             </div>
         </ul>
     </nav>
+
     <h1 style="text-align: center;">Our products</h1>
-    <div th:each="p : ${products}" class="products">
-        <h2 th:text="${p.name}">Product name</h2>
-        <a th:href="@{/itemdescription/{id}(id=${p.id})}">
-            <img th:src="@{'/images/' + ${p.image}}" alt="Product image" style="width: 200px;">
-        </a>
-        <p th:text="${p.price} + Kr"></p>
+    <div class="product-container">
+        <div th:each="p : ${products}" class="product-card">
+            <h2 th:text="${p.name}">Product name</h2>
+            <a th:href="@{/itemdescription/{id}(id=${p.id})}">
+                <img th:src="@{'/images/' + ${p.image}}" alt="Product image" style="width: 200px;">
+            </a>
+            <p th:text="${p.price} + Kr"></p>
+        </div>
     </div>
 </body>
 
