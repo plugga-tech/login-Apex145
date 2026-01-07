@@ -13,8 +13,18 @@ This application was created as part of a school project
 * **Security:** Spring Security
 * **Frontend:** Thymeleaf and some Css
 
+## Architecture
+* **Config:** Handles Spring Security and also the 3 stores products in the applications database.
+* **Controller:** Handles all the HTTP request from all pages the application has.
+* **Model:** Handels the creation of the User and Product objects.
+* **Repository:** Handels all the communication with the database.
+* **Service:** Handels all the business logic, such as validation of the registration of a user.
+
+
 ## Spring security
-This application uses Spring Security.
+This application uses Spring Security for password encryption and access to other parts of the application.
+The password of the newly create user will be encryptet using BCryptEncoder befor it's sent to the database.
+<br>
 ### Authorization Rules
 | Route | Access Level | Description |
 | :--- | :--- | :--- |
