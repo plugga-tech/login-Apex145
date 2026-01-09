@@ -9,17 +9,7 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a th:href="@{/}">Homepage</a></li>
-            <div sec:authorize="isAnonymous()">
-                <li><a th:href="@{/login}">Login</a></li>
-            </div>
-            <div sec:authorize="isAuthenticated()">
-                <li><a th:href="@{/logout}">Logout</a></li>
-            </div>
-        </ul>
-        </nav>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 
         <div th:object="${item}" class="product-card">
