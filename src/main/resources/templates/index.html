@@ -9,20 +9,7 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <ul>
-            <div sec:authorize="isAuthenticated()">
-                <li><a th:href="@{/orders}">My orders</a></li>
-            </div>
-            <li><a th:href="@{registration}">Registration</a></li>
-            <div sec:authorize="isAnonymous()">
-                <li><a th:href="@{/login}">Login</a></li>
-            </div>
-            <div sec:authorize="isAuthenticated()">
-                <li><a th:href="@{/logout}">Logout</a></li>
-            </div>
-        </ul>
-    </nav>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <h1 style="text-align: center;">Our products</h1>
     <div class="product-container">
