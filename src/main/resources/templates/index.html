@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysian</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <h1 style="text-align: center;">Our products</h1>
+    <div class="product-container">
+        <div th:each="p : ${products}" class="product-card">
+            <h2 th:text="${p.name}">Product name</h2>
+            <a th:href="@{/itemdescription/{id}(id=${p.id})}">
+                <img th:src="@{'/images/' + ${p.image}}" alt="Product image" style="width: 200px;">
+            </a>
+            <p th:text="${p.price} + Kr"></p>
+        </div>
+    </div>
+</body>
+
+</html>
